@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アルヴィン・スカーロック | 竜騎士名鑑 — アルカディア</title>
+<meta name="description" content="竜騎士協会アルカディア 竜騎士名鑑。竜騎士四級アルヴィン・スカーロックのプロフィール、異能、装備、契約竜の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Shippori+Mincho:wght@500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b2624;
+  --pine:#153b37;
+  --patina:#4d8677;
+  --porcelain:#e8eeea;
+  --mist:#d3ddd8;
+  --silver:#aab7b5;
+  --dragon:#a01f2f;
+  --serif:"Cormorant Garamond","Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --caps:"Cormorant SC","Shippori Mincho","Hiragino Mincho ProN",serif;
+  --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--mincho);font-weight:500;line-height:1.95;letter-spacing:.04em;
+  color:var(--ink);background:var(--porcelain);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--dragon);outline-offset:3px}
+
+/* ---------- hero: full-bleed editorial cover ---------- */
+.hero{position:relative;min-height:92svh;color:var(--porcelain);isolation:isolate;overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:-1;background:var(--ink)}
+.hero-media img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 10%;display:block;
+  filter:grayscale(.3) contrast(1.08) brightness(.88) saturate(.9);
+}
+.hero-media::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to top, var(--ink) 0%, rgba(11,38,36,.75) 26%, rgba(11,38,36,.05) 54%, rgba(11,38,36,.35) 100%);
+}
+.hero-overlay{
+  position:relative;min-height:92svh;display:flex;flex-direction:column;justify-content:space-between;
+  padding:clamp(26px,5vw,54px);
+}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.hero-eyebrow{font-family:var(--caps);font-size:.68rem;letter-spacing:.42em;padding-left:.42em;color:var(--silver);font-weight:600}
+.hero-quote{
+  max-width:19em;text-align:right;font-family:var(--serif);font-style:italic;
+  font-size:.98rem;color:var(--mist);line-height:1.7;
+}
+.hero-bottom{max-width:820px}
+.hero-rule{width:38px;height:2px;background:var(--dragon);margin-bottom:16px}
+.hero h1{
+  font-weight:800;font-size:clamp(2.5rem,9vw,5.2rem);line-height:1.08;
+  letter-spacing:-.01em;
+}
+.hero .romaji{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(1.05rem,2.4vw,1.4rem);color:var(--silver);letter-spacing:.05em;margin-top:8px;
+}
+.hero-meta{
+  margin-top:22px;font-size:.82rem;letter-spacing:.1em;color:var(--mist);
+}
+.hero-meta span+span::before{content:"・";margin:0 .6em;color:var(--patina)}
+@media (max-width:640px){
+  .hero-top{flex-direction:column;gap:14px}
+  .hero-quote{text-align:left;max-width:none}
+}
+
+/* ---------- carousel selector ---------- */
+.tabbar-wrap{
+  position:sticky;top:0;z-index:10;background:var(--porcelain);
+  border-top:3px double var(--ink);border-bottom:1px solid rgba(11,38,36,.25);
+  padding:14px 0;
+}
+.carousel{position:relative;max-width:520px;margin:0 auto;height:64px;overflow:hidden}
+.carousel::before,.carousel::after{
+  content:"";position:absolute;top:0;bottom:0;width:56px;z-index:2;pointer-events:none;
+}
+.carousel::before{left:0;background:linear-gradient(to right,var(--porcelain),rgba(232,238,234,0))}
+.carousel::after{right:0;background:linear-gradient(to left,var(--porcelain),rgba(232,238,234,0))}
+.track{position:absolute;top:0;left:0;height:100%;display:flex;align-items:center;gap:10px;
+  transition:transform .45s cubic-bezier(.3,.7,.2,1);will-change:transform}
+.tab{
+  flex:0 0 auto;width:158px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:1px solid rgba(11,38,36,.25);color:var(--pine);
+  font-size:.85rem;letter-spacing:.14em;font-weight:600;
+  opacity:.55;transform:scale(.92);
+  transition:opacity .35s ease,transform .35s ease,color .25s,border-color .25s,background .25s;
+}
+.tab .en{font-family:var(--serif);font-style:italic;font-weight:500;font-size:.62rem;letter-spacing:.06em;color:var(--patina);margin-top:2px}
+.tab:hover{opacity:.85}
+.tab[aria-selected="true"]{
+  opacity:1;transform:scale(1);color:var(--porcelain);background:var(--pine);
+  border-color:var(--dragon);box-shadow:0 0 0 1px var(--dragon);
+}
+.tab[aria-selected="true"] .en{color:var(--mist)}
+.arrow{
+  position:absolute;top:0;bottom:0;width:44px;z-index:3;
+  display:flex;align-items:center;justify-content:center;color:var(--ink);
+}
+.arrow.prev{left:0}.arrow.next{right:0}
+.arrow svg{width:16px;height:22px;display:block;transition:transform .2s ease}
+.arrow:hover svg{transform:scale(1.15)}
+.arrow.prev:hover svg{transform:scale(1.15) translateX(-2px)}
+.arrow.next:hover svg{transform:scale(1.15) translateX(2px)}
+
+/* ---------- panels ---------- */
+.panels{max-width:700px;margin:0 auto;padding:clamp(40px,7vw,64px) 24px clamp(60px,8vw,90px)}
+.panel{display:none}
+.panel.active{display:block;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel .head{margin-bottom:26px}
+.panel .head h2{font-weight:800;font-size:1.5rem;letter-spacing:.2em;padding-left:.2em}
+.panel .head .en{font-family:var(--serif);font-style:italic;color:var(--patina);font-size:.9rem;margin-top:2px}
+.rule{width:40px;height:1px;background:var(--dragon);margin:0 0 16px}
+.prose p{max-width:34em}
+.prose p+p{margin-top:.5em}
+
+.ledger{width:100%;border-collapse:collapse;border-top:3px double var(--ink);border-bottom:3px double var(--ink)}
+.ledger th{width:8em;text-align:left;font-weight:800;font-size:.8rem;letter-spacing:.18em;padding:12px 14px;background:rgba(21,59,55,.06);border-bottom:1px solid rgba(11,38,36,.2);vertical-align:top}
+.ledger td{padding:12px 14px;border-bottom:1px solid rgba(11,38,36,.2)}
+.ledger tr:last-child th,.ledger tr:last-child td{border-bottom:0}
+@media (max-width:520px){
+  .ledger,.ledger tbody,.ledger tr,.ledger th,.ledger td{display:block;width:auto}
+  .ledger tr{padding:8px 0;border-bottom:1px solid rgba(11,38,36,.2)}
+  .ledger tr:last-child{border-bottom:0}
+  .ledger th{border-bottom:0;padding-bottom:0;color:var(--patina);background:none}
+  .ledger td{padding-top:0}
+}
+
+.ability-name{font-weight:800;font-size:1.35rem;letter-spacing:.14em;margin-bottom:8px}
+.ability-name small{display:block;font-family:var(--serif);font-style:italic;font-weight:500;font-size:.82rem;color:var(--patina)}
+.skill{margin-top:26px;border-left:3px solid var(--dragon);padding:4px 0 4px 18px}
+.skill h3{font-size:1rem;letter-spacing:.1em;font-weight:800}
+.skill h3 span{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--patina);margin-left:8px;font-size:.82rem}
+.skill p{margin-top:4px;max-width:32em}
+
+.gear-plate{border:1px solid rgba(160,31,47,.35);position:relative;padding:22px 24px;background:linear-gradient(160deg,rgba(160,31,47,.06),transparent 60%)}
+.gear-plate::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--dragon)}
+.gear-plate h3{font-size:1.15rem;font-weight:800;letter-spacing:.12em}
+.gear-plate h3 small{display:block;font-family:var(--serif);font-style:italic;font-weight:500;color:var(--patina);font-size:.82rem;margin-top:2px}
+.gear-plate p{margin-top:12px;max-width:32em}
+
+.contact{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.contact-portrait{width:140px;aspect-ratio:1;border-radius:50%;overflow:hidden;flex-shrink:0;border:3px solid var(--dragon);box-shadow:0 0 0 5px var(--porcelain),0 0 0 6px rgba(160,31,47,.35)}
+.contact-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.contact .body{flex:1;min-width:220px}
+.contact .tags{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.contact .tags span{font-size:.75rem;letter-spacing:.1em;color:var(--patina);border:1px solid rgba(77,134,119,.4);padding:2px 10px}
+
+.note-box{border-top:1px solid rgba(11,38,36,.25);padding-top:20px}
+
+footer{background:var(--ink);color:var(--silver);text-align:center;padding:40px 24px 56px;font-size:.8rem;letter-spacing:.1em}
+footer .caps{font-family:var(--caps);font-size:1rem;letter-spacing:.3em;color:var(--porcelain);font-weight:600;margin-bottom:8px}
+footer a{border-bottom:1px solid rgba(170,183,181,.4)}
+footer .credit{margin-top:14px;color:rgba(170,183,181,.55);font-size:.72rem}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-media"><img src="img/alvin.svg" alt="アルヴィン・スカーロックの肖像"></div>
+  <div class="hero-overlay">
+    <div class="hero-top">
+      <p class="hero-eyebrow">竜騎士名鑑　ARCADIA</p>
+      <blockquote class="hero-quote">「実直。私の座右の銘だ。」</blockquote>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-rule"></div>
+      <h1>アルヴィン・スカーロック</h1>
+      <p class="romaji">Alwyn Scurlock</p>
+      <p class="hero-meta"><span>竜騎士 四級</span><span>ウェールズ</span><span>契約竜 覇空竜ゴラム</span></p>
+    </div>
+  </div>
+</header>
+
+<nav class="tabbar-wrap">
+  <div class="carousel">
+    <button class="arrow prev" id="prevBtn" aria-label="前の項目"><svg viewBox="0 0 16 22"><path d="M15 1L1 11L15 21Z" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg></button>
+    <div class="track" role="tablist" aria-label="項目を選択" id="track">
+      <button class="tab" role="tab" id="t-profile" data-p="profile" aria-selected="true">プロフィール<span class="en">Profile</span></button>
+      <button class="tab" role="tab" id="t-overview" data-p="overview" aria-selected="false" tabindex="-1">概要<span class="en">Overview</span></button>
+      <button class="tab" role="tab" id="t-ability" data-p="ability" aria-selected="false" tabindex="-1">異能<span class="en">Ability</span></button>
+      <button class="tab" role="tab" id="t-gear" data-p="gear" aria-selected="false" tabindex="-1">装備<span class="en">Gear</span></button>
+      <button class="tab" role="tab" id="t-skills" data-p="skills" aria-selected="false" tabindex="-1">技能<span class="en">Skills</span></button>
+      <button class="tab" role="tab" id="t-dragon" data-p="dragon" aria-selected="false" tabindex="-1">契約竜<span class="en">Dragon</span></button>
+      <button class="tab" role="tab" id="t-trivia" data-p="trivia" aria-selected="false" tabindex="-1">余談<span class="en">Notes</span></button>
+    </div>
+    <button class="arrow next" id="nextBtn" aria-label="次の項目"><svg viewBox="0 0 16 22"><path d="M1 1L15 11L1 21Z" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg></button>
+  </div>
+</nav>
+
+<main class="panels">
+
+  <div class="panel active" id="p-profile" role="tabpanel" aria-labelledby="t-profile">
+    <div class="head"><div class="rule"></div><h2>プロフィール</h2><p class="en">Profile</p></div>
+    <table class="ledger">
+      <tbody>
+        <tr><th>名前</th><td>アルヴィン・スカーロック</td></tr>
+        <tr><th>契約ドラゴン</th><td>覇空竜ゴラム</td></tr>
+        <tr><th>種族</th><td>人間</td></tr>
+        <tr><th>性別</th><td>男</td></tr>
+        <tr><th>アライメント</th><td>秩序・善</td></tr>
+        <tr><th>年齢</th><td>19歳</td></tr>
+        <tr><th>誕生日</th><td>12月15日</td></tr>
+        <tr><th>身長</th><td>198cm</td></tr>
+        <tr><th>体重</th><td>「測っていない。」</td></tr>
+        <tr><th>血液型</th><td>A型</td></tr>
+        <tr><th>異能力</th><td>空力支配（Master of Aerodynamics）</td></tr>
+        <tr><th>国籍</th><td>ウェールズ</td></tr>
+        <tr><th>職業</th><td>竜騎士</td></tr>
+        <tr><th>階級</th><td>四級</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel" id="p-overview" role="tabpanel" aria-labelledby="t-overview">
+    <div class="head"><div class="rule"></div><h2>概要</h2><p class="en">Overview</p></div>
+    <div class="prose">
+      <p>竜騎卿を輩出したレベルの名家から出てきた、由緒正しい三男坊。巨体と槍を活かした戦闘が得意である。</p>
+      <p>槍の腕はまだ成長途中。未熟ながらも愚直。竜に乗り空から飛び込むような、古風な戦闘スタイルを好む。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p-ability" role="tabpanel" aria-labelledby="t-ability">
+    <div class="head"><div class="rule"></div><h2>異能</h2><p class="en">Ability</p></div>
+    <div class="ability-name">空力支配<small>Master of Aerodynamics</small></div>
+    <div class="prose">
+      <p>半径2m以内の空気抵抗、揚力をある程度操作できる。一点の空気抵抗を極度に高めることで跳ねる、揚力を操ることで空を舞うなど、高い自由度を持つ。</p>
+      <p>非常に操作難度が高い。</p>
+    </div>
+    <div class="skill">
+      <h3>空鱗<span>Air Scales</span></h3>
+      <p>空気抵抗を高めて疑似的な壁を作る防御技。これを足場にしてジャンプする技は「空翼」（Air Wing）と呼ばれる。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p-gear" role="tabpanel" aria-labelledby="t-gear">
+    <div class="head"><div class="rule"></div><h2>装備</h2><p class="en">Possessions</p></div>
+    <div class="gear-plate">
+      <h3>紅玉槍「フレア」<small>Flare — the Ruby Lance</small></h3>
+      <p>霊石が埋め込まれた槍。ウェールズで生まれた情熱の紅玉で作られており、竜気因子がほどほどに込められている。</p>
+      <p>霊石の力を発揮するためには、竜気因子の感知が不可欠。アルヴィン的にもなんやかんや3年くらい使っているので、お気に入りの一振りである。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p-skills" role="tabpanel" aria-labelledby="t-skills">
+    <div class="head"><div class="rule"></div><h2>技能</h2><p class="en">Skills</p></div>
+    <div class="prose">
+      <p>槍術と、竜との連携のみ。だったが、友人の協力で操弾（タスラム）を取得。異能と合わせ、槍を手元に戻すくらいはできるようになった。</p>
+      <p>竜気は、まだ実っていない。</p>
+    </div>
+  </div>
+
+  <div class="panel" id="p-dragon" role="tabpanel" aria-labelledby="t-dragon">
+    <div class="head"><div class="rule"></div><h2>契約竜</h2><p class="en">The Contracted Dragon</p></div>
+    <div class="contact">
+      <div class="contact-portrait"><img src="https://images-ng.pixai.art/ji/orig/a4b99bf0-0e92-43c5-8833-305f17dc6ee0" alt="覇空竜ゴラムの肖像"></div>
+      <div class="body">
+        <div class="ability-name" style="margin-bottom:2px">覇空竜「ゴラム」<small>Gollum, the Sky-Sovereign</small></div>
+        <div class="tags"><span>ノーブル種</span><span>大型個体</span></div>
+        <div class="prose" style="margin-top:10px"><p>巨体のノーブル種。絵に描いたような竜で、一般的な竜と比較し、二回りは大きい体を持つ。</p></div>
+        <div class="skill">
+          <h3>縮小化<span>Diminish</span></h3>
+          <p>生命活動のための必要エネルギーをカットする異能。攻撃の回避のため、相手をビビらせるためだとかに使う。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-trivia" role="tabpanel" aria-labelledby="t-trivia">
+    <div class="head"><div class="rule"></div><h2>余談</h2><p class="en">Notes</p></div>
+    <div class="note-box prose">
+      <p>頬の傷は、なついていない頃のゴラムにつけられたものである。</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="caps">ARCADIA</div>
+  <p><a href="../index.html">← 竜騎士協会 トップへ</a></p>
+  <div class="credit">原典：ここだけ異能のある世界ウィキ「アルヴィン・スカーロック」の記述をもとに構成</div>
+</footer>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var track = document.getElementById('track');
+  var carousel = document.querySelector('.carousel');
+  var panels = {};
+  document.querySelectorAll('.panel').forEach(function(p){ panels[p.id.replace('p-','')] = p; });
+  var current = 0;
+
+  function center(){
+    var chip = tabs[current];
+    var offset = carousel.clientWidth/2 - (chip.offsetLeft + chip.offsetWidth/2);
+    track.style.transform = 'translateX(' + offset + 'px)';
+  }
+
+  function show(index, focusTab){
+    current = (index + tabs.length) % tabs.length;
+    tabs.forEach(function(t, i){
+      var on = i === current;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if(on && focusTab) t.focus();
+    });
+    Object.keys(panels).forEach(function(k){
+      panels[k].classList.toggle('active', k === tabs[current].dataset.p);
+    });
+    center();
+  }
+
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ show(i); });
+  });
+  document.getElementById('prevBtn').addEventListener('click', function(){ show(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function(){ show(current + 1); });
+  carousel.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight'){ e.preventDefault(); show(current + 1, true); }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); show(current - 1, true); }
+  });
+
+  window.addEventListener('resize', center);
+  show(0);
+})();
+</script>
+</body>
+</html>
